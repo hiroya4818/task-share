@@ -1,6 +1,27 @@
-<h2>{{ member.name }}</h2>
-<div><span>id: </span>{{ member.id }}</div>
-<div><span>名前: </span>{{ member.name }}</div>
-<div><span>支払い額: </span>{{ member.money }}</div>
+
+<h2>メンバー一覧</h2>
+<ul class="members">
+  <li
+    *ngFor="let member of members"
+    [class.selected]="member === selectedMember"
+  >
+    <span class="badge">{{ member.id }}</span> {{ member.name }}
+    <span class="member-edit">
+      <button (click)="onSelect(member)">編集</button>
+      <button>削除</button>
+    </span>
+  </li>
+</ul>
+
+<div *ngIf="selectedMember">
+  <h2>{{ selectedMember.name }}</h2>
+  <div><span>id: </span>{{ selectedMember.id }}</div>
+  <div>
+      <label>名前:
+          <input type="text" [(ngModel)]="selectedMember.name" placeholder="名前">
+      </label>
+  </div>
+  <div><span>支払い額: </span>{{ selectedMember.money }}</div>
+</div>
 
 
