@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
-import { MEMBERS } from '../mock-members';
-
+import { MemberService } from '../member.service';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
@@ -9,20 +8,26 @@ import { MEMBERS } from '../mock-members';
 })
 export class MembersComponent implements OnInit {
 
-  members = MEMBERS;
-  member: Member = {
-    id: 1,
-    name: '田中 太郎',
-    money: 300,
-  };
-  selectedMember: Member | undefined;
+  members?: Member[];
+  selectedMember?: Member;
 
-  constructor() { }
+  constructor(private memberService: MemberService) { }
 
   ngOnInit(): void {
+    this.getMembers();
   }
 
   onSelect(member: Member): void {
     this.selectedMember = member;
+  }
+
+  deleteMember(deleteMember: Member):void {
+    this.members = this.members?.filter(member => member !== deleteMember);
+    if(deleteMember === this.selectedMember) this.selectedMember = undefined;
+  }
+
+  getMembers(): void {
+    this.memberService.getMembers()
+      .subscribe(members => this.members = members);
   }
 }

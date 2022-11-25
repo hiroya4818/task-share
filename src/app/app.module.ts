@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MembersComponent } from './members/members.component';
+import { MemberEditComponent } from './member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MembersComponent
+    MembersComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
