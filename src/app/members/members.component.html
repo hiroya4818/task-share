@@ -1,6 +1,18 @@
-<h2>{{ member.name }}</h2>
-<div><span>id: </span>{{ member.id }}</div>
-<div><span>名前: </span>{{ member.name }}</div>
-<div><span>支払い額: </span>{{ member.money }}</div>
 
+<h2>メンバー表</h2>
+<span class="member-not-exist" *ngIf="members?.length === 0">現在メンバーが存在しません</span>
+<ul class="members">
+  <li
+    *ngFor="let member of members"
+    [class.selected]="member === selectedMember"
+  >
+    <span [style.background-color]="member.color" class="badge">{{ member.id }}</span> {{ member.name }}
+    <span class="member-edit">
+      <button (click)="onSelect(member)">編集</button>
+      <button (click)="deleteMember(member)">削除</button>
+    </span>
+  </li>
+</ul>
+
+<app-member-edit [member]="selectedMember"></app-member-edit>
 
