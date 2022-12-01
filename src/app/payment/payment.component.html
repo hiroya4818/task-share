@@ -1,15 +1,20 @@
 <h3>これまでの支払い一覧</h3>
 <span class="payment-not-exist" *ngIf="items?.length === 0">支払い履歴が存在しません</span>
-<ul class="members" >
-  <li
-    *ngFor="let item of items"
-  >
-    <span [style.background-color]="item?.color" class="badge">{{ item?.name }}</span> {{ item?.paymentName }}
-    <!-- <span class="member-edit">
-      <button (click)="onSelect(member)">編集</button>
-      <button (click)="deleteMember(member)">削除</button>
-    </span> -->
-  </li>
-</ul>
+<table>
+  <tr>
+    <th class="color"></th>
+    <th>イベント名</th>
+    <th>支払い額</th>
+    <th>{{items?.length }}</th>
+  </tr>
+  <tr *ngFor="let item of items;">
+    <span>{{ item?.name }}</span>
+    <td class="color"></td>
+    <td>{{ item?.name }}</td>
+    <td>{{ item?.name }}</td>
+    <td>{{ item?.name }}</td>
+  </tr>
+
+</table>
 
 <!-- <app-member-edit [member]="selectedMember"></app-member-edit> -->

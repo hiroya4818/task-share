@@ -1,0 +1,36 @@
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 400px;
+}
+
+table tr{
+  border-bottom: solid 1px #eee;
+  cursor: pointer;
+}
+
+table tr:hover{
+  background-color: #d4f0fd;
+}
+
+table span{
+  text-align: center;
+  padding: 5px 0;
+}
+table th,table td{
+  text-align: center;
+  width: 20%;
+  padding: 5px 0;
+}
+
+table .color{
+  width: 5%;
+  background-color: red;
+}
+
+table td.icon{
+  background-size: 35px;
+  background-position: left 5px center;
+  background-repeat: no-repeat;
+  padding-left: 30px;
+}
