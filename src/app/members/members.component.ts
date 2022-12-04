@@ -23,12 +23,13 @@ export class MembersComponent implements OnInit {
 
   onSelect(member: Member): void {
     this.selectedMember = member;
-    this.messageService.add(`${this.selectedMember.name} さんが選択されました`);
   }
 
-  deleteMember(deleteMember: Member):void {
-    this.members = this.members?.filter(member => member !== deleteMember);
-    if(deleteMember === this.selectedMember) this.selectedMember = undefined;
+  deleteMember(member: Member):void {
+    this.members = this.members?.filter(selfMember => selfMember !== member);
+    this.messageService.add(`${member.name} さんが削除されました`);
+    if(member === this.selectedMember) this.selectedMember = undefined;
+    // this.memberService.deleteMember(member).subscribe();
   }
 
   getMembers(): void {
