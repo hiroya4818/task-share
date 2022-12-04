@@ -1,5 +1,7 @@
+import { Member } from './member';
 export interface Item {
-  name: string;
-  payment: number;
-  paymentName: string;
+  taskName: string;
+  detail: string;
+  manager?: Member;
+  progress?: string;
 }

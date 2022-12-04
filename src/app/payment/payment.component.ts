@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../Item';
+import { Member } from '../member';
+import { MemberService } from '../member.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,27 +12,36 @@ import { Item } from '../Item';
 export class PaymentComponent implements OnInit {
   items: Item[] = [
     {
-      name: '食べ物代',
-      payment: 1000,
-      paymentName: '福田',
+      taskName: '買い物',
+      detail: '今日中に終わらせておきたい。予算は2000円で',
     },
     {
-      name: '飲み物代',
-      payment: 500,
-      paymentName: 'ふくだ',
+      taskName: '皿洗い',
+      detail: '洗剤が切れているのでついでに買い物も',
     }
   ];
 
   selectedItem?: Item;
+  members?: Member[];
 
 
-  constructor() { }
+
+  constructor(
+    private memberService: MemberService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit(): void {
+    this.getMembers();
   }
 
   onSelect(item: Item): void {
     this.selectedItem = item;
+  }
+
+  getMembers(): void {
+    this.memberService.getMembers()
+      .subscribe(members => this.members = members);
   }
 
 }
