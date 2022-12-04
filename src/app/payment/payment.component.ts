@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../Item';
 
 @Component({
   selector: 'app-payment',
@@ -6,32 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
-  item? = {
-    name: '飲食代',
-    payment: 1000,
-    paymentName: '福田',
-    color: 'red'
-  };
-
-  items? = [
+  items: Item[] = [
     {
-      name: '飲食代',
+      name: '食べ物代',
       payment: 1000,
       paymentName: '福田',
-      color: 'red'
     },
     {
-      name: '飲食代',
-      payment: 1000,
-      paymentName: '福田',
-      color: 'red'
+      name: '飲み物代',
+      payment: 500,
+      paymentName: 'ふくだ',
     }
   ];
+
+  selectedItem?: Item;
+
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSelect(item: Item): void {
+    this.selectedItem = item;
   }
 
 }

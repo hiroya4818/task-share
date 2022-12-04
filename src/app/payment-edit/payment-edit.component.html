@@ -1,0 +1,15 @@
+<div *ngIf="item">
+  <h2>{{ item.name }}</h2>
+  <div>
+      <label>イベント名:
+          <input type="text" [(ngModel)]="item.name" placeholder="イベント名">
+      </label>
+  </div>
+  <div>
+    <label>支払い額:
+      <input type="text" [(ngModel)]="item.payment" placeholder="支払い額">円
+    </label>
+  </div>
+  <div><span>支払い者: </span>{{ item.paymentName }}</div>
+</div>
+

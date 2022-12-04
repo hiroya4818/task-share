@@ -15,4 +15,8 @@ export class MemberService {
     this.messageService.add('メンバー表データを取得しました');
     return of(MEMBERS);
   }
+
+  // deleteMember(member: Member): Observable<Member> {
+  //   const id = member.id;
+  // }
 }

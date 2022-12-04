@@ -5,16 +5,21 @@
     <th class="color"></th>
     <th>イベント名</th>
     <th>支払い額</th>
-    <th>{{items?.length }}</th>
+    <th>支払い者</th>
+    <th class="button"></th>
   </tr>
-  <tr *ngFor="let item of items;">
-    <span>{{ item?.name }}</span>
-    <td class="color"></td>
+  <tr *ngFor="let item of items">
+    <td class="color item"></td>
     <td>{{ item?.name }}</td>
-    <td>{{ item?.name }}</td>
-    <td>{{ item?.name }}</td>
+    <td>{{ item?.payment }}</td>
+    <td>{{ item?.paymentName }}</td>
+    <th class="button">
+      <button (click)="onSelect(item)">編集</button>
+      <button>削除</button>
+    </th>
+
   </tr>
 
 </table>
 
-<!-- <app-member-edit [member]="selectedMember"></app-member-edit> -->
+<app-payment-edit [item]="selectedItem"></app-payment-edit>
