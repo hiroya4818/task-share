@@ -6,5 +6,16 @@
           <input type="text" [(ngModel)]="member.name" placeholder="名前">
       </label>
   </div>
-  <div><span>支払い額: </span>{{ member.money }}</div>
+  <div>
+    <label>マイカラー:
+      <select  [(ngModel)]="member.color">
+          <option>{{ member.color }}</option>
+          <option>red</option>
+          <option>purple</option>
+          <option>green</option>
+      </select>
+    </label>
+  </div>
+  <button (click)="goBack()">キャンセル</button>
+  <button (click)="save()">保存</button>
 </div>

@@ -1,4 +1,21 @@
 <h3>これまでのタスク一覧</h3>
+<div class="item-add">
+  <label class="item-add-edit">タスク名　:
+    <input type="text" #memberName>
+  </label>
+  <br>
+  <label>タスク詳細:
+    <textarea #memberColor rows="5" cols="33">
+    </textarea>
+  </label>
+  <button
+    (click)="
+        memberName.value='';
+        memberColor.value='';"
+  >
+    追加
+  </button>
+</div>
 <span class="payment-not-exist" *ngIf="items?.length === 0">タスク履歴が存在しません</span>
 <table>
   <tr>
@@ -9,7 +26,7 @@
     <th class="button"></th>
   </tr>
   <tr *ngFor="let item of items">
-    <td class="color item"></td>
+    <td class="color item" [style.background-color]="item.manager?.color"></td>
     <td>{{ item?.taskName }}</td>
     <td>
       <div>

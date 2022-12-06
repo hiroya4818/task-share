@@ -28,10 +28,18 @@ table .color{
 }
 
 table .item{
-  background-color: red;
+  background-color: rgb(236, 236, 236);
 }
 
 button {
   margin-left: 10px;
   /* padding-left: 10px; */
+}
+
+.item-add input {
+  margin-bottom: 10px;
+}
+
+.item-add button {
+  margin-left: 30px;
 }
