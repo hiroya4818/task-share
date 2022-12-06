@@ -27,7 +27,7 @@ export class MembersComponent implements OnInit {
 
   deleteMember(member: Member):void {
     this.members = this.members?.filter(selfMember => selfMember !== member);
-    this.messageService.add(`${member.name} さんが削除されました`);
+    this.memberService.deleteMember(member).subscribe();
     if(member === this.selectedMember) this.selectedMember = undefined;
     // this.memberService.deleteMember(member).subscribe();
   }
@@ -35,5 +35,19 @@ export class MembersComponent implements OnInit {
   getMembers(): void {
     this.memberService.getMembers()
       .subscribe(members => this.members = members);
+  }
+
+  selectClear(): void {
+    this.selectedMember = undefined;
+    this.getMembers();
+  }
+
+  add(name: string, color: string): void {
+    name = name.trim();
+    if(!name) { return;}
+    this.memberService.addMember({ name, color} as Member)
+      .subscribe((member: Member) => {
+        this.members?.push(member);
+      });
   }
 }

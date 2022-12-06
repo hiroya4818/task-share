@@ -1,5 +1,24 @@
 <div class="content">
   <h2>メンバー表</h2>
+  <div class="member-add">
+    <label>メンバー名:
+      <input type="text" #memberName>
+    </label>
+    <label>マイカラー:
+      <select  #memberColor>
+          <option>red</option>
+          <option>purple</option>
+          <option>green</option>
+      </select>
+    </label>
+    <button
+      (click)="add(memberName.value, memberColor.value);
+          memberName.value='';
+          memberColor.value='';"
+    >
+      追加
+    </button>
+  </div>
   <span class="member-not-exist" *ngIf="members?.length === 0">現在メンバーが存在しません</span>
   <ul class="members">
     <li
@@ -16,5 +35,5 @@
 
 </div>
 
-<app-member-edit [member]="selectedMember"></app-member-edit>
+<app-member-edit [member]="selectedMember" (selectClear)="selectClear()"></app-member-edit>
 
