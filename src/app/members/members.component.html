@@ -6,9 +6,8 @@
     </label>
     <label>マイカラー:
       <select  #memberColor>
-          <option>red</option>
-          <option>purple</option>
-          <option>green</option>
+          <option selected>選択してください</option>
+          <option *ngFor="let color of colors">{{ color }}</option>
       </select>
     </label>
     <button
@@ -35,5 +34,5 @@
 
 </div>
 
-<app-member-edit [member]="selectedMember" (selectClear)="selectClear()"></app-member-edit>
+<app-member-edit [member]="selectedMember" (selectClear)="selectClear()" (memberUpdate)="getMembers()"></app-member-edit>
 
