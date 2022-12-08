@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
 import { MessageService } from '../message.service';
+import { COLORS } from '../mock-color';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
@@ -11,6 +12,7 @@ export class MembersComponent implements OnInit {
 
   members?: Member[];
   selectedMember?: Member;
+  colors = COLORS;
 
   constructor(
     private memberService: MemberService,
@@ -49,5 +51,6 @@ export class MembersComponent implements OnInit {
       .subscribe((member: Member) => {
         this.members?.push(member);
       });
+    this.getMembers();
   }
 }

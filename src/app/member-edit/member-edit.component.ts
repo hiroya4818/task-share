@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { Member } from '../member';
 import { MemberService } from '../member.service';
+import { COLORS } from '../mock-color';
 
 @Component({
   selector: 'app-member-edit',
@@ -10,6 +11,8 @@ import { MemberService } from '../member.service';
 export class MemberEditComponent implements OnInit, OnChanges {
   @Input() member?: Member;
   @Output() selectClear = new EventEmitter();
+  @Output() memberUpdate = new EventEmitter();
+  colors = COLORS;
   oldMemberData: Member | undefined;
 
   constructor(
@@ -21,7 +24,10 @@ export class MemberEditComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
+    // this.selectClear.emit();
+    this.memberUpdate.emit();
     this.changeDetectorRef.detectChanges();
+    console.log('change');
   }
 
   goBack(): void {
