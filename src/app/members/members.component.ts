@@ -10,7 +10,7 @@ import { COLORS } from '../mock-color';
 })
 export class MembersComponent implements OnInit {
 
-  members?: Member[];
+  members: Member[] | undefined;
   selectedMember?: Member;
   colors = COLORS;
 
@@ -51,6 +51,5 @@ export class MembersComponent implements OnInit {
       .subscribe((member: Member) => {
         this.members?.push(member);
       });
-    this.getMembers();
   }
 }

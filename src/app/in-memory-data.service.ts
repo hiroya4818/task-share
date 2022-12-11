@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Member } from './member';
+import { Item } from './Item';
 
 
 @Injectable({
@@ -17,10 +18,27 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 16, name: '緑川 睦' , color: 'green' },
     ];
 
-    return { members };
+    const items = [
+      {
+        id: 1,
+        taskName: '買い物',
+        detail: '今日中に終わらせておきたい。予算は2000円で',
+      },
+      {
+        id: 2,
+        taskName: '皿洗い',
+        detail: '洗剤が切れているのでついでに買い物も',
+      }
+    ];
+
+    return { members, items };
   }
 
-  genId(members: Member[]): number {
+  genMemberId(members: Member[]): number {
     return members.length > 0 ? Math.max(...members.map(member => member.id)) + 1 : 11;
+  }
+
+  genItemId(items: Item[]): number {
+    return items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
   }
 }

@@ -30,7 +30,7 @@ export class MemberService {
   updateMember(member: Member): Observable<any> {
     return this.http.put(this.membersUrl, member, this.httpOptions)
       .pipe(
-        tap(_ => this.log(`メンバー(id=${member.id})情報を変更しました`)),
+        tap(_ => this.log(`${member.name} さんの情報を変更しました`)),
         catchError(this.handleError<any>('updateMember'))
       );
   }
@@ -38,7 +38,7 @@ export class MemberService {
   addMember(member: Member): Observable<Member> {
     return this.http.post<Member>(this.membersUrl,member,this.httpOptions)
       .pipe(
-        tap((newMember: Member) => this.log(`メンバーデータ(id=${newMember.id})を追加しました`)),
+        tap((newMember: Member) => this.log(`${member.name} さんを追加しました`)),
         catchError(this.handleError<Member>('addMember'))
       );
   }
@@ -49,8 +49,8 @@ export class MemberService {
 
     return this.http.delete<Member>(url, this.httpOptions)
       .pipe(
-        tap(_ => this.log(`メンバーデータ(id=${id})を削除しました`)),
-        catchError(this.handleError<Member>('addMember'))
+        tap(_ => this.log(`${member?.name} さんを削除しました`)),
+        catchError(this.handleError<Member>('deleteMember'))
       )
   }
   private log(message: string) {

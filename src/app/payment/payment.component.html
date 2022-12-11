@@ -1,64 +1,66 @@
 <h3>これまでのタスク一覧</h3>
 <div class="item-add">
   <label class="item-add-edit">タスク名　:
-    <input type="text" #memberName>
+    <input type="text" #itemName>
   </label>
   <br>
   <label>タスク詳細:
-    <textarea #memberColor rows="5" cols="33">
+    <textarea #itemDetail rows="5" cols="33">
     </textarea>
   </label>
   <button
-    (click)="
-        memberName.value='';
-        memberColor.value='';"
+    (click)="addItem(itemName.value, itemDetail.value);
+    itemName.value='';
+    itemDetail.value='';"
   >
     追加
   </button>
 </div>
-<span class="payment-not-exist" *ngIf="items?.length === 0">タスク履歴が存在しません</span>
-<table>
-  <tr>
-    <th class="color"></th>
-    <th>タスク名</th>
-    <th>担当者</th>
-    <th>タスク状況</th>
-    <th class="button"></th>
-  </tr>
-  <tr *ngFor="let item of items">
-    <td class="color item" [style.background-color]="item.manager?.color"></td>
-    <td>{{ item?.taskName }}</td>
-    <td>
-      <div>
-        <label>
-          <select  [(ngModel)]="item.manager">
-            <option *ngFor="let member of members"
-              [ngValue]="member">
-                {{member.name}}
-            </option>
-          </select>
-        </label>
-      </div>
-    </td>
-    <td>
-      <div>
-        <label>
-          <select  [(ngModel)]="item.progress">
-            <option>完了</option>
-            <option>進行中</option>
-            <option>未着手</option>
-          </select>
-        </label>
-      </div>
-    </td>
-    <th class="button">
-      <button (click)="onSelect(item)">詳細</button>
-      <button *ngIf="item.progress !== '完了'">削除</button>
-      <button *ngIf="item.progress === '完了'">達成</button>
-    </th>
+<h4 class="payment-not-exist" *ngIf="items?.length === 0">タスク履歴が存在しません</h4>
+<ng-container *ngIf="items?.length !== 0">
+  <table>
+    <tr>
+      <th class="color"></th>
+      <th>タスク名</th>
+      <th>担当者</th>
+      <th>タスク状況</th>
+      <th class="button"></th>
+    </tr>
+    <tr *ngFor="let item of items">
+      <td class="color item" [style.background-color]="item.manager?.color"></td>
+      <td>{{ item?.taskName }}</td>
+      <td>
+        <div>
+          <label>
+            <select  [(ngModel)]="item.manager">
+              <option *ngFor="let member of members"
+                [ngValue]="member">
+                  {{member.name}}
+              </option>
+            </select>
+          </label>
+        </div>
+      </td>
+      <td>
+        <div>
+          <label>
+            <select  [(ngModel)]="item.progress">
+              <option>完了</option>
+              <option>進行中</option>
+              <option>未着手</option>
+            </select>
+          </label>
+        </div>
+      </td>
+      <th class="button">
+        <button (click)="onSelect(item)">詳細</button>
+        <button *ngIf="item.progress !== '完了'" (click)="deleteItem(item)">削除</button>
+        <button *ngIf="item.progress === '完了'" (click)="achiveItem(item)">達成</button>
+      </th>
 
-  </tr>
+    </tr>
 
-</table>
+  </table>
+</ng-container>
 
 <app-payment-edit [item]="selectedItem"></app-payment-edit>
