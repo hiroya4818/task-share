@@ -31,12 +31,11 @@ export class PaymentComponent implements OnInit {
   addItem(taskName: string, detail: string): void {
     taskName = taskName.trim();
     detail = detail.trim();
-    let manager: Member = {color: 'white'} as Member;
     if(!taskName || !detail) {
       console.log('AAA');
       return;
     }
-    this.paymentService.addItem({taskName,detail,manager} as Item)
+    this.paymentService.addItem({taskName,detail} as Item)
       .subscribe((item: Item) => {
         this.items?.push(item);
         this.selectedItem = undefined;

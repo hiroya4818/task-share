@@ -16,8 +16,8 @@
     追加
   </button>
 </div>
-<h4 class="payment-not-exist" *ngIf="items?.length === 0">タスク履歴が存在しません</h4>
-<ng-container *ngIf="items?.length !== 0">
+<h4 class="payment-not-exist" *ngIf="items?.length === 1">タスク履歴が存在しません</h4>
+<ng-container *ngIf="items?.length !== 1">
   <table>
     <tr>
       <th class="color"></th>
@@ -26,39 +26,43 @@
       <th>タスク状況</th>
       <th class="button"></th>
     </tr>
-    <tr *ngFor="let item of items">
-      <td class="color item" [style.background-color]="item.manager?.color"></td>
-      <td>{{ item?.taskName }}</td>
-      <td>
-        <div>
-          <label>
-            <select  [(ngModel)]="item.manager">
-              <option *ngFor="let member of members"
-                [ngValue]="member">
-                  {{member.name}}
-              </option>
-            </select>
-          </label>
-        </div>
-      </td>
-      <td>
-        <div>
-          <label>
-            <select  [(ngModel)]="item.progress">
-              <option>完了</option>
-              <option>進行中</option>
-              <option>未着手</option>
-            </select>
-          </label>
-        </div>
-      </td>
-      <th class="button">
-        <button (click)="onSelect(item)">詳細</button>
-        <button *ngIf="item.progress !== '完了'" (click)="deleteItem(item)">削除</button>
-        <button *ngIf="item.progress === '完了'" (click)="achiveItem(item)">達成</button>
-      </th>
+    <ng-container *ngFor="let item of items">
+      <tr *ngIf="item.id !== 0" class="hover">
+        <td class="color item" [style.background-color]="item.manager?.color"></td>
+        <td>{{ item?.taskName }}</td>
+        <td>
+          <div>
+            <label>
+              <select  [(ngModel)]="item.manager">
+                <ng-container *ngFor="let member of members">
+                  <option *ngIf="member.id !== 0"
+                    [ngValue]="member">
+                      {{member.name}}
+                  </option>
+                </ng-container>
+              </select>
+            </label>
+          </div>
+        </td>
+        <td>
+          <div>
+            <label>
+              <select  [(ngModel)]="item.progress">
+                <option>完了</option>
+                <option>進行中</option>
+                <option>未着手</option>
+              </select>
+            </label>
+          </div>
+        </td>
+        <th class="button">
+          <button (click)="onSelect(item)">詳細</button>
+          <button *ngIf="item.progress !== '完了'" (click)="deleteItem(item)">削除</button>
+          <button *ngIf="item.progress === '完了'" (click)="achiveItem(item)">達成</button>
+        </th>
 
-    </tr>
+      </tr>
+    </ng-container>
 
   </table>
 </ng-container>

@@ -10,6 +10,7 @@ import { Item } from './Item';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const members = [
+      { id: 0, name: 'default' },
       { id: 11, name: '武山 岳大', color: 'red' },
       { id: 12, name: '駒倉 光紀', color: 'pink'},
       { id: 13, name: '長田 研太', color: 'brown'},
@@ -19,6 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const items = [
+      { id: 0, taskName: 'default', detail:'default' },
       {
         id: 1,
         taskName: '買い物',
