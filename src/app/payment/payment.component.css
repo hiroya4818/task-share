@@ -9,7 +9,7 @@ table tr{
   cursor: pointer;
 }
 
-table tr:hover{
+table .hover:hover{
   background-color: #d4f0fd;
 }
 

@@ -18,18 +18,21 @@
       追加
     </button>
   </div>
-  <span class="member-not-exist" *ngIf="members?.length === 0">現在メンバーが存在しません</span>
+  <span class="member-not-exist" *ngIf="members?.length === 1">現在メンバーが存在しません</span>
   <ul class="members">
-    <li
-      *ngFor="let member of members"
-      [class.selected]="member === selectedMember"
-    >
-      <span [style.background-color]="member.color" class="badge">{{ member.id }}</span> {{ member.name }}
-      <span class="member-edit">
-        <button (click)="onSelect(member)">編集</button>
-        <button (click)="deleteMember(member)">削除</button>
-      </span>
-    </li>
+    <ng-container *ngFor="let member of members">
+      <li
+        *ngIf="member.id !== 0"
+        [class.selected]="member === selectedMember"
+      >
+        <span [style.background-color]="member.color" class="badge">{{ member.id }}</span> {{ member.name }}
+        <span class="member-edit">
+          <button (click)="onSelect(member)">編集</button>
+          <button (click)="deleteMember(member)">削除</button>
+        </span>
+      </li>
+
+    </ng-container>
   </ul>
 
 </div>
